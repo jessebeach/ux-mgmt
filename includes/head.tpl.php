@@ -9,5 +9,5 @@
 <link type="text/css" rel="stylesheet" href="/css/presentation.css" />
 <link type="text/css" rel="stylesheet" href="/css/style.css" />
 <script src="/plugins/jquery/jquery.min.js"></script>
-<script src="/plugins/jQuery-Presentation/scripts/jquery.presentation-full.js"></script>
+<script src="/plugins/jquery.preso/scripts/jquery.preso.js"></script>
 <script src="/js/control.js"></script>

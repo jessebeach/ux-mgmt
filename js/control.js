@@ -2,11 +2,11 @@
 	$(document).on({
 		'ready': startPresentation
 	}, '', {
-		presentation: '#slides'
+		presentation: '.outline'
 	});
 	
 	function startPresentation (event) {
-		$(event.data.presentation).presentation({
+		$(event.data.presentation).preso({
 		  slide: '.slide', //Reference to each individual slide
 		  pagerClass: 'nav-pager', //Class to put on the unordered list that contains links to each slide
 		  prevNextClass: 'nav-prev-next', //Class to put on the unordered list that contains the previous and next links
