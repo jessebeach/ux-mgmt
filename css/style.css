@@ -1,3 +1,79 @@
+body {
+  background-color: white;
+  color: black;
+	font: 24px/36px Helvetica, Arial, Sans-Serif;
+}
+
+/* @group headers */
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+h1 { font-size: 18px; line-height: 18px; }
+h2, h3, h4, h5 { font-family: Georgia, "Times New Roman", Times, serif; }
+h2 { color: #6cbdb5; font-size: 60px; line-height: 60px; }
+/* @end */
+
+/* @group links */
+a {
+	text-decoration: underline;
+}
+a:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+/* @end */
+
+/* @group basic text */
+p, ol, ul, table { margin: 0 0 30px; }
+ul { list-style: square; }
+li:first-child { padding-top: 0; }
+li:last-child { border-bottom: none; padding-bottom: 0; }
+/* @end */
+
+/* @group Header/Footer */
+
+header,
+footer {
+	color: #fff;
+  font-size: 14px; 
+  line-height: 14px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+	background-color: rgba(0, 75, 255, 0.5);
+}
+header {
+	height: 22px;
+	top: 0;
+}
+footer {
+	bottom: 0;
+	height: 23px;
+	text-align: right;
+}
+header.doc h1 {
+	margin: 0 0 0 20px;
+}
+footer small {
+	position: relative;
+	top: 4px;
+}
+
+/* @end */
+
+/* @group Presentation */
+
+.nav-pager a,
+.nav-prev-next a {
+	background: #93ccc6;
+	color: rgba(26,31,30,0.5);
+}
+.nav-pager .current a,
+.nav-prev-next a:hover {
+	background: #6cbdb5; 
+	color: #fff;
+}
+
+/* @end */
+
 .grid {
 	outline: 1px dashed green;
 }
