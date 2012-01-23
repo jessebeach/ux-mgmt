@@ -22,7 +22,12 @@ a:hover {
 /* @end */
 
 /* @group basic text */
-p, ol, ul, table { margin: 0 0 30px; }
+p,
+ol,
+ul,
+table {
+	margin: 0 0 30px; 
+}
 ul { list-style: square; }
 li:first-child { padding-top: 0; }
 li:last-child { border-bottom: none; padding-bottom: 0; }
@@ -32,13 +37,13 @@ li:last-child { border-bottom: none; padding-bottom: 0; }
 
 header,
 footer {
+	background-color: rgba(0, 50, 150, 0.5);
 	color: #fff;
   font-size: 14px; 
   line-height: 14px;
   position: fixed;
   width: 100%;
   z-index: 10;
-	background-color: rgba(0, 75, 255, 0.5);
 }
 header {
 	height: 22px;
@@ -63,8 +68,8 @@ footer small {
 
 .nav-pager a,
 .nav-prev-next a {
-	background: #93ccc6;
-	color: rgba(26,31,30,0.5);
+	background: rgba(168, 200, 240, 1);
+	color: rgba(10, 14, 20, 0.5);
 }
 .nav-pager .current a,
 .nav-prev-next a:hover {
