@@ -52,7 +52,6 @@
 						</li>
 					</ol>
 				</li>
-				<li>
 				<li>Let's start with the composition of a page.
 					<ol>
 						<li>Fundamentally we have primary content
@@ -88,7 +87,7 @@
 				</li>
 				<li>So that which is not primary content should be considered an enhancement to the experience.</li>
 				<li>A user's or a machine's consumption of a page would not be diminished if this content were not present.</li>
-				<li>You may know this concept already as <strong>Progressive Enhancement</strong>, here applied to content instead of presentation.</li>
+				<li>You may know this concept already as <strong>Progressive Enhancement</strong>, here applied to content instead of presentation.
 					<ol>
 						<li>
 							<p>Secondary content might include</p>
@@ -113,16 +112,26 @@
 				</li>
 				<li>But what a boring place the web would be if web pages were simply articles and lists.</li>
 				<li>Secondary content adds context and opportunities to dive deeper (we hope).</li>
-				<li>So how do we get content to the requested page after the initial request?
+				<li>So how do we get content to the requested page after the initial request?</li>
 				<li>Client-side content requests</li>
 				<li>You already know what this is. An AJAX or AHAH request for content.</li>
-				<li>Deliver secondary content as rendered HTML and just drop it in place.
+				<li>
+					<p>This requires the existence of content views, ideally through RESTful URLs.</p>
+					<p>The Twitter api for is a great example of content retrieval through a RESTful API.</p>
+				</li>
+				<li><a href="https://search.twitter.com/search.json?from=%40jessebeach" class="slide">Tweets from @jessebeach</a></li>
+				<li>Ideally all content in web site would be retrievable through a coherent API (more on this in a moment!)</li>
+				
+				<li>Once content is retrievable through a coherent API, we can leverage techniques like edge side includes (ESI) to cache parts of a pages</li>
+				<li>When those parts of a page are requested asynchronously from the client, the data can be served from a cache rather than built fresh each request.</li>
+				<li>Providers like Akamai and technologies like Varnish provide ESI support today.</li>
+				<li>As far as methods, we can deliver secondary content as rendered HTML and just drop it in place.
 					<ol>
 						<li>The server code is still responsible for rendering output, but this done asynchronously.</li>
 						<li>We can utilize this approach with Drupal today, albeit with some inefficiency.</li>
 					</ol>
 				</li>
-				<li>Deliver content as data (JSON, XML) and render the data to HTML in the client.</li>
+				<li>Or we can deliver content as data (JSON, XML) and render the data to HTML in the client.</li>
 				<li>
 					<p>What tools exist to do this?</p>
 					<ul>
@@ -148,59 +157,43 @@
 				</li>
 				<li>None of them are great yet.</li>
 				<li>Most require some knowledge of dependencies like node and package management.</li>
-				<li>Although I'm extremely interested in the potential for robust js templating libraries, they're still not ready for large scale production sites.</li>
-				
-				<li>The advantages of breaking a page into primary and secondary content requests.</li>
-				
-				<li>In terms of performance, the absolute ideal is the anonymous user and a fully cached page.</li>
-				<li>As we personalize the page, less and less of the page is cacheable. Performance suffers.</li>
-				
-				<li>Tailored experience
+				<li>
+					<p>Although I'm extremely interested in the potential for robust js templating libraries, they're still not ready for large scale production sites.</p>
+					<small>(If you know different, let me know.)</small>
+				</li>
+				<li>So for now, our best approach is leaning on theming systems like Drupal to produce renderable output.</li>
+
+				<li>This is Drupal Camp! And you only just mentione Drupal!</li>
+				<li>
+					<p>I know, I did this on purpose</p>
+					<p>Separation of primary and secondary content is not a concept limited to Drupal, or any CMS.</p>
+				</li>
+				<li>It's how we'll need to start thinking of content assembly in our web pages going forward in order to optimize performance and conserve resources (i.e. save money).</li>
+				<li>So where do we stand with Drupal?</li>
+				<li>Content API and Services module
 					<ol>
-						<li>Authenticated users have preferences, they have history</li>
-						<li>The content we present to them should be relevant. Suggested articles should be based on articles they've read. Their weather widget should be tuned to their location, etc</li>
+						<li>http://drupal.org/project/contentapi</li>
+						<li>[Need a live example with the Content API module.]</li>
 					</ol>
 				</li>
-				<li>Optimizing performance
+				<li>Drupal isn't currently optimized to handle multiple small requests for data.</li>
+				<li>The Drupal Bootstrap is an expensive process.</li>
+				<li>Currently, a request routed to Drupal spins up the Form API, the Field API, the Theme layer.</li>
+				<li>The D8 <strong>Web Services and Context Core Initiative</strong> (<abbr>WSCCI</abbr>) effort lead by Larry Garfield (crell) intends to remove these inefficiencies.
+			    <ol>
+			    	<li>Intelligent bootstraps that spin up only the necessary Drupal sub-systems.</li>
+			    	<li>Context manipulation per request, meaning one might specify a teaser view of nodes rather than the default view for a list output.</li>
+			    </ol>
+				</li>
+				
+				<li>[Concrete example]
 					<ol>
-						<li>When the server returns a smaller payload to the initial request, the perceived load time of that page is less.</li>
-						<li>
-							<ol>
-								<li><a href="https://www.facebook.com/note.php?note_id=389414033919">Facebook BigPipe</a></li>
-							</ol>
-						</li>
-						<li>ESI includes (?)</li>
-						<li>Delayed content loading managed by the client
-							<ol>
-								<li>What can we do now with the Drupal AJAX API to speed up page loads.</li>
-							</ol>
-						</li>
-					</ol> 
+						<li>How enhanced pages work in mobile/desktop scenarios</li>
+						<li>With a Content API and some intelligent client-side code, we can create UIs the respond intelligently to a client's capabilities.</li>
+						<li>Request data on user-demand in a mobile UI vs. automatic request in a desktop format.</li>
+					</ol>
 				</li>
-				<li>This is Drupal Camp! You haven't even mentioned Drupal yet!
-			    <ol>
-			    	<li>That's because Drupal isn't currently optimized to handle multiple small requests for data.</li>
-			    </ol>
-				</li>
-				<li>Drupal Bootstrap
-			    <ol>
-			    	<li>Airplane analogy.</li>
-			    </ol>
-				</li>
-				<li>D8 WSCCI efforts (crell - Larry Garfield)
-			    <ol>
-			    	<li>Context manipulation per request.</li>
-			    </ol>
-				</li>
-				<li>How enhanced pages work in mobile/desktop scenarios</li>
-
-				<li>Accessibility concerns
-			    <ol>
-			    	<li>98.4% of screen reader users have javascript enabled</li>
-			    	<li>http://webaim.org/projects/screenreadersurvey3/</li>
-			    </ol>
-				</li>
-				<li>What we need to do is bring the disparate pieces of the stack together: server side, client side, mobile/desktop presentation, experience management
+				<li>What we need to do is bring the disparate pieces of the stack together: server side, client side, mobile/desktop presentation
 			    <ol>
 			    	<li>We are simultaneously trying to improve actual page performance as well as perceived page performance.</li>
 			    	<li>Drupal will need to adapt to become a content delivery platform rather than a page delivery platform.</li>
